@@ -29,7 +29,7 @@ Route::prefix('restricted')
 ->group(function () {
     Route::get('hello', 'TestController@logged')
 
-    ->name('hello');
+    ->name('hello_private');
 });
 
 Route::prefix('free-zone')
@@ -37,6 +37,6 @@ Route::prefix('free-zone')
 ->group(function () {
     Route::get('hello', 'TestController@guest')
 
-    ->name('hello');
+    ->name('hello_free');
 });
 

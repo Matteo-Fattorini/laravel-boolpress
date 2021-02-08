@@ -30,6 +30,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <a class="mr-5" href="{{ route("hello_private") }}">Prova la rotta privata</a>
+
+                <a href="{{ route("hello_free") }}">Prova la rotta libera</a>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
