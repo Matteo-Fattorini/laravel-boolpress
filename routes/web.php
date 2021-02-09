@@ -15,28 +15,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "PostController@index");
+Route::get('home', "PostController@index");
+
+
 
 Auth::routes();
+Route::resource('post',"PostController");
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::prefix('restricted')
-->middleware('auth')
-->group(function () {
-    Route::get('hello', 'TestController@logged')
-
-    ->name('hello_private');
-});
-
-Route::prefix('free-zone')
-
-->group(function () {
-    Route::get('hello', 'TestController@guest')
-
-    ->name('hello_free');
-});
 

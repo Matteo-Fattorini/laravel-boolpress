@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 
-class TestController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+
+        $posts = Post::all();
+        $user = Auth::user();
+        return view("home",compact("user","posts"));
     }
 
     /**
@@ -24,18 +29,12 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    public function guest(){
-        $message = "Ciao Utente non Autenticato";
-        return view("test",compact("message"));
-    }
-
-    public function logged(){
-        $user = Auth::user();
-        $message = "Ciao" . " " . $user->name;
-        return view("test",compact("message"));
+        
+        if(Auth::check()){
+            return view("create");
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -46,7 +45,16 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->title = $data["title"];
+        $post->details = $data["details"];
+        $post->save();
+        return redirect()->route("post.index");
+
     }
 
     /**
@@ -57,7 +65,8 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        //
+       
+
     }
 
     /**
@@ -89,8 +98,15 @@ class TestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Post $post)
+    {   
+        if(Auth::check()){
+            $post->delete();
+        }
+        
+        
+        
+
+        return redirect()->route("post.index");
     }
 }

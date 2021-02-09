@@ -19,6 +19,14 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function getPosts(){
+        return $this->hasMany("App\Post","user_id");
+    }
+
+    public function isAdmin(){
+        return $this->isAdmin;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
