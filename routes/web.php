@@ -23,6 +23,6 @@ Route::get('home', "PostController@index");
 Auth::routes();
 Route::resource('post',"PostController");
 
-
+Route::get("reserved","PostController@admin")->middleware("can:admin,get")->name("admin.show");
 
 

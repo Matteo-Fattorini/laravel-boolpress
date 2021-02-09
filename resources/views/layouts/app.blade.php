@@ -26,6 +26,10 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @auth
+                
+                <a href="{{ route("admin.show") }}"><button  @if(!Auth::user()->isAdmin) disabled @endif class="btn btn-primary">Admin Button</button></a>
+                @endauth
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

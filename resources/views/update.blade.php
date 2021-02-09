@@ -4,21 +4,19 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <form action="{{ route("post.store") }}" method="post">
+                <form action="{{ route("post.update",$post->id) }}" method="post">
                     @csrf
-                    @method("POST")
+                    @method("PUT")
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input name="title" type="text" class="form-control" id="title" >
+                        <input value="{{ $post->title }}" type="text"name="title" type="text" class="form-control" id="title" >
                         
                     </div>
-                    <div class="mb-3">
-                        <label for="details" class="form-label">Details</label>
-                        <input name="details" type="text" class="form-control" id="details" >
-                        
-                    </div>
+                    <textarea class="form-control mt-5 mb-5" name="details" id="details" cols="30" rows="10">{{ $post->details }}
+                    </textarea>
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                    <button type="submit mt-5" class="btn btn-primary">Modifica</button>
                 </form>
             </div>
         </div>
