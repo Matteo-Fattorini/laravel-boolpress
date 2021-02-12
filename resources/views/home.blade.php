@@ -9,6 +9,7 @@
 
                     <div class="card mr-3 mb-3" style="width: 18rem;">
                         <div class="card-body">
+                            <img width="50px" src="{{ asset($post->url) }}" alt="">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 {{ $post->getUser->name }}

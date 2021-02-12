@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <form action="{{ route("post.store") }}" method="post">
+                <form action="{{ route("post.store") }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("POST")
                     <div class="mb-3">
@@ -17,6 +17,14 @@
                         <input name="details" type="text" class="form-control" id="details" >
                         
                     </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">image</label>
+                        <input name="image" type="file" class="form-control" id="image" >
+                        
+                    </div>
+
+                    
                     
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
